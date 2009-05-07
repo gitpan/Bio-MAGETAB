@@ -1,0 +1,50 @@
+Changelog for Bio::MAGETAB
+--------------------------
+
+0.97    Bio::MAGETAB-0.97.tar.gz        Merged magetab and magetab-util packages together for
+                                          convenience (see below for old Bio::MAGETAB::Util
+                                          changelog).
+                                        Minor bug fixes.
+                                        New class to automate fixes to ArrayExpress MAGE-TAB
+                                          documents.
+
+0.96    Bio::MAGETAB-0.96.tar.gz        Made LabeledExtract->label attribute optional. This
+                                          better agrees with the MAGE-TAB specification, even
+                                          if it doesn't make much sense in reality. This
+                                          change makes SDRF parsing slightly simpler.
+
+0.95    Bio::MAGETAB-0.95.tar.gz        Added BaseClass to the MagicDraw UML model document.
+                                        Renamed Feature blockColumn and column attributes
+                                          to blockCol and col respectively; this avoids
+                                          naming conflicts in some ORM implementations.
+                                        Renamed all "type" attributes, similarly to
+                                          avoid conflicts.
+                                        Converted Source providers and ProtocolApplication
+                                          performers to fully-fledged Contact objects.
+                                        Relaxed requirement for measurement on ParameterValue.
+                                        Added POD coverage tests.
+
+0.91    Bio::MAGETAB-0.91.tar.gz        Added class documentation (POD).
+
+0.9	Bio::MAGETAB-0.9.tar.gz	        Initial public release; API almost finalised.
+
+
+
+
+
+
+Changelog for Bio::MAGETAB::Util, prior to merging with Bio::MAGETAB
+--------------------------------------------------------------------
+
+0.4     Bio-MAGETAB-Util-0.4.tar.gz           Added ADF, IDF and SDRF export
+                                                  functions.
+                                                Improved GraphViz visualisation API.
+                                                Minor parser bug fixes.
+
+0.31    Bio-MAGETAB-Util-0.31.tar.gz          Various bug fixes based on tests
+                                                  with real-world IDFs and SDRFs.
+                                                Improved object identity heuristics.
+                                                Full MySQL database schema and
+                                                  unloader script.
+
+0.3	Bio-MAGETAB-Util-0.3.tar.gz	        Initial public release
