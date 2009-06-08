@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: IDF.pm 304 2009-05-03 11:09:08Z tfrayner $
+# $Id: IDF.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Util::Writer::IDF;
 
@@ -292,7 +292,7 @@ Export of Investigations to IDF files.
 
 =head1 ATTRIBUTES
 
-See L<Bio::MAGETAB::Util::Writer::Tabfile> for superclass attributes.
+See the L<Tabfile|Bio::MAGETAB::Util::Writer::Tabfile> class for superclass attributes.
 
 =over 2
 
@@ -315,7 +315,8 @@ Exports the Investigation to IDF.
 
 =head1 SEE ALSO
 
-L<Bio::MAGETAB::Writer>, L<Bio::MAGETAB::Writer::Tabfile>
+L<Bio::MAGETAB::Writer>
+L<Bio::MAGETAB::Writer::Tabfile>
 
 =head1 AUTHOR
 

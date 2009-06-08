@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Tabfile.pm 304 2009-05-03 11:09:08Z tfrayner $
+# $Id: Tabfile.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Util::Writer::Tabfile;
 
@@ -143,8 +143,8 @@ No public methods.
 
 =head1 SEE ALSO
 
-L<Bio::MAGETAB::Util::Writer::ADF>,
-L<Bio::MAGETAB::Util::Writer::IDF>,
+L<Bio::MAGETAB::Util::Writer::ADF>
+L<Bio::MAGETAB::Util::Writer::IDF>
 L<Bio::MAGETAB::Util::Writer::SDRF>
 
 =head1 AUTHOR

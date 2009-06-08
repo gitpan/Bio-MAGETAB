@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: DatabaseEntry.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: DatabaseEntry.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::DatabaseEntry;
 
@@ -58,7 +58,7 @@ This class is used to store MAGE-TAB database entry information. These
 entries can be from sequence databases (e.g. as attached to
 Reporters), ontologies (when using the ControlledTerm subclass), or
 databases which hold higher-level metadata (e.g. ArrayDesigns,
-Protocols). See L<Bio::MAGETAB::BaseClass> for superclass methods.
+Protocols). See the L<BaseClass|Bio::MAGETAB::BaseClass> class for superclass methods.
 
 =head1 ATTRIBUTES
 

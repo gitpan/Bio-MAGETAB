@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: SDRFRow.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: SDRFRow.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::SDRFRow;
 
@@ -138,8 +138,8 @@ Bio::MAGETAB::SDRFRow - MAGE-TAB SDRF row class
 
 This class is used to describe the rows in a given MAGE-TAB SDRF
 document. Links between Nodes, channel and FactorValue are handled by
-this class. See L<Bio::MAGETAB::BaseClass> for superclass methods, and
-L<Bio::MAGETAB::SDRF> for its add_nodes method which can be used to
+this class. See the L<BaseClass|Bio::MAGETAB::BaseClass> class for superclass methods, and the
+L<SDRF|Bio::MAGETAB::SDRF> class for its add_nodes method which can be used to
 automatically sort Nodes into SDRFRows.
 
 =head1 ATTRIBUTES

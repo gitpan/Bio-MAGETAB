@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: DataFile.pm 122 2008-11-29 17:56:36Z tfrayner $
+# $Id: DataFile.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::DataFile;
 
@@ -46,8 +46,8 @@ Bio::MAGETAB::DataFile - MAGE-TAB data file class
 
 This class describes data files having arbitrary formats. Most
 software-specific data files fall into this category. The sole
-exception are data matrices; see L<Bio::MAGETAB::DataMatrix>. See
-L<Bio::MAGETAB::Data> for superclass methods.
+exception are data matrices; see the L<DataMatrix|Bio::MAGETAB::DataMatrix> class. See the
+L<Data|Bio::MAGETAB::Data> class for superclass methods.
 
 =head1 ATTRIBUTES
 

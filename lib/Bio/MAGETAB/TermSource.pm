@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: TermSource.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: TermSource.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::TermSource;
 
@@ -63,7 +63,7 @@ Bio::MAGETAB::TermSource - MAGE-TAB term source class
 This class is used to describe the sources of controlled terms within
 a MAGE-TAB document. These term sources may be databases, ontologies,
 or even just local controlled vocabularies expressed as a flat
-file. See L<Bio::MAGETAB::BaseClass> for superclass methods.
+file. See the L<BaseClass|Bio::MAGETAB::BaseClass> class for superclass methods.
 
 =head1 ATTRIBUTES
 

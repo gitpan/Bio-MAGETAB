@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: DesignElement.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: DesignElement.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::DesignElement;
 
@@ -77,7 +77,7 @@ Bio::MAGETAB::DesignElement - Abstract design element class
 
 This class is an abstract class from which all MAGE-TAB DesignElement
 classes (Feature, Reporter, CompositeElement) are derived. It cannot
-be instantiated directly. See L<Bio::MAGETAB::BaseClass> for
+be instantiated directly. See the L<BaseClass|Bio::MAGETAB::BaseClass> class for
 superclass methods.
 
 =head1 ATTRIBUTES

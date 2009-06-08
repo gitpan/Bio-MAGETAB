@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: LabeledExtract.pm 181 2009-01-15 12:50:42Z tfrayner $
+# $Id: LabeledExtract.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::LabeledExtract;
 
@@ -47,7 +47,7 @@ Bio::MAGETAB::LabeledExtract - MAGE-TAB labeled extract class
 =head1 DESCRIPTION
 
 This class is used to store information on labeled extracts
-in MAGE-TAB. L<Bio::MAGETAB::Material> for superclass methods.
+in MAGE-TAB. See the L<Material|Bio::MAGETAB::Material> class for superclass methods.
 
 =head1 ATTRIBUTES
 

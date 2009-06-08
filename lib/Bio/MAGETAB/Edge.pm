@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Edge.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: Edge.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Edge;
 
@@ -169,7 +169,7 @@ Bio::MAGETAB::Edge - MAGE-TAB edge class
 
 This class is used to store information on edges in the experimental
 design graph described by a MAGE-TAB SDRF. Each Edge must link to both
-an input and an output Node. L<Bio::MAGETAB::BaseClass> for superclass
+an input and an output Node. See the L<BaseClass|Bio::MAGETAB::BaseClass> class for superclass
 methods.
 
 =head1 ATTRIBUTES

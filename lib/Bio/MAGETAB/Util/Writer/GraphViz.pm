@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: GraphViz.pm 304 2009-05-03 11:09:08Z tfrayner $
+# $Id: GraphViz.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Util::Writer::GraphViz;
 
@@ -180,7 +180,7 @@ formats.
 =item sdrfs
 
 A list of Bio::MAGETAB::SDRFs object to visualize. This is a required
-attribute. See L<Bio::MAGETAB::SDRF> for more information on this
+attribute. See the L<SDRF|Bio::MAGETAB::SDRF> class for more information on this
 class.
 
 =item font

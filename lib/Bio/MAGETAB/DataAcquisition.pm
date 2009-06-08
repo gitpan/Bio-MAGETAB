@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: DataAcquisition.pm 126 2008-12-01 08:24:52Z tfrayner $
+# $Id: DataAcquisition.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::DataAcquisition;
 
@@ -41,7 +41,7 @@ Bio::MAGETAB::DataAcquisition - MAGE-TAB data acquisition class
 =head1 DESCRIPTION
 
 This class represents events which generate data files, such as the
-scanning of a hybridized microarray slide. See L<Bio::MAGETAB::Event>
+scanning of a hybridized microarray slide. See the L<Event|Bio::MAGETAB::Event> class
 for superclass methods.
 
 =head1 ATTRIBUTES

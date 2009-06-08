@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Source.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: Source.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Source;
 
@@ -52,7 +52,7 @@ Bio::MAGETAB::Source - MAGE-TAB source class
 This class is used to store information on the starting biological
 material for a given experiment ('source'). These nodes typically form
 the starting point for the experimental design
-graph. L<Bio::MAGETAB::Material> for superclass methods.
+graph. See the L<Material|Bio::MAGETAB::Material> class for superclass methods.
 
 =head1 ATTRIBUTES
 

@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Extract.pm 124 2008-11-30 18:57:11Z tfrayner $
+# $Id: Extract.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Extract;
 
@@ -41,7 +41,7 @@ Bio::MAGETAB::Extract - MAGE-TAB extract class
 =head1 DESCRIPTION
 
 This class is used to store information on biological extracts (e.g.,
-RNA, DNA) in MAGE-TAB. L<Bio::MAGETAB::Material> for superclass
+RNA, DNA) in MAGE-TAB. See the L<Material|Bio::MAGETAB::Material> class for superclass
 methods.
 
 =head1 ATTRIBUTES

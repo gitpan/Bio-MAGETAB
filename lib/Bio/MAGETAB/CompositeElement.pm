@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: CompositeElement.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: CompositeElement.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::CompositeElement;
 
@@ -63,7 +63,7 @@ Bio::MAGETAB::CompositeElement - MAGE-TAB composite element class
 This class is used to store information on composite elements in
 MAGE-TAB. These elements typically correspond to biologically relevant
 sequences or features (e.g., genes, exons, etc.). See
-L<Bio::MAGETAB::DesignElement> for superclass methods.
+the L<DesignElement|Bio::MAGETAB::DesignElement> class for superclass methods.
 
 =head1 ATTRIBUTES
 

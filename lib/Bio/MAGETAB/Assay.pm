@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Assay.pm 121 2008-11-28 19:43:36Z tfrayner $
+# $Id: Assay.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Assay;
 
@@ -55,7 +55,7 @@ is a generic class which can represent any assay type, specified via
 its technologyType attribute. Assays which specifically represent
 hybridization events should use a 'hybridization' ControlledTerm as
 their technologyType and should also link to an ArrayDesign. See
-L<Bio::MAGETAB::Event> for superclass methods.
+the L<Event|Bio::MAGETAB::Event> class for superclass methods.
 
 =head1 ATTRIBUTES
 

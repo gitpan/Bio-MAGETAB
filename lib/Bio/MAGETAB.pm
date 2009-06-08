@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: MAGETAB.pm 304 2009-05-03 11:09:08Z tfrayner $
+# $Id: MAGETAB.pm 323 2009-06-08 07:40:43Z tfrayner $
 
 # Convenience class for module loading and object tracking.
 package Bio::MAGETAB;
@@ -31,7 +31,7 @@ use List::Util qw(first);
 
 use MooseX::Types::Moose qw( HashRef );
 
-our $VERSION = 0.97;
+our $VERSION = 0.98;
 
 # This cache is used to store all the Bio::MAGETAB objects registered
 # with this instance (which, by default, is all of them).
@@ -260,8 +260,11 @@ Bio::MAGETAB - A data model and utility API for the MAGE-TAB format.
 The Bio::MAGETAB module provides the core set of classes used to
 support the perl MAGE-TAB API. This module provides a set of data
 structures and type constraints which help to reliably handle data in
-MAGE-TAB format. See the L<Bio::MAGETAB::Util> module for classes
-which can be used to read, write and visualize MAGE-TAB data.
+MAGE-TAB format. See the L<Reader|Bio::MAGETAB::Util::Reader>,
+L<Writer|Bio::MAGETAB::Util::Writer> and
+L<GraphViz|Bio::MAGETAB::Util::Writer::GraphViz> modules for classes
+which can be used to read, write and visualize MAGE-TAB data
+respectively.
 
 This top-level Bio::MAGETAB class provides convenience methods for
 managing MAGE-TAB objects. It can be used to import the class
@@ -658,7 +661,9 @@ Returns all the TermSource objects held by the container.
 
 =head1 SEE ALSO
 
-L<Bio::MAGETAB::Util>, L<Bio::MAGETAB::Util::Reader>, L<Bio::MAGETAB::BaseClass>
+L<Bio::MAGETAB::Util::Reader>
+L<Bio::MAGETAB::Util::Writer>
+L<Bio::MAGETAB::BaseClass>
 
 =head1 AUTHOR
 

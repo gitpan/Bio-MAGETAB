@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Tabfile.pm 304 2009-05-03 11:09:08Z tfrayner $
+# $Id: Tabfile.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Util::Reader::Tabfile;
 
@@ -449,7 +449,8 @@ In addition, each attribute has accessor (get_*) and mutator (set_*) methods.
 
 =head1 SEE ALSO
 
-L<Bio::MAGETAB::Util::Reader>, L<Bio::MAGETAB::Util::Reader::TagValueFile>
+L<Bio::MAGETAB::Util::Reader>
+L<Bio::MAGETAB::Util::Reader::TagValueFile>
 
 =head1 AUTHOR
 

@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Persistence.pm 304 2009-05-03 11:09:08Z tfrayner $
+# $Id: Persistence.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Util::Persistence;
 
@@ -601,7 +601,8 @@ information on these methods.
 
 =head1 SEE ALSO
 
-L<Bio::MAGETAB::DBLoader>, Tangram
+L<Bio::MAGETAB::DBLoader>
+L<http://tangram.utsl.gen.nz/>
 
 =head1 AUTHOR
 

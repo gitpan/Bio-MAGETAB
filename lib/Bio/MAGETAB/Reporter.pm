@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Reporter.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: Reporter.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Reporter;
 
@@ -82,7 +82,7 @@ Bio::MAGETAB::Reporter - MAGE-TAB reporter class
 This class is used to store information on array reporter elements in
 MAGE-TAB. These elements typically correspond to probe sequences, or
 in simple cases they may map directly to biologically interesting
-sequences (e.g., genes). See L<Bio::MAGETAB::DesignElement> for
+sequences (e.g., genes). See the L<DesignElement|Bio::MAGETAB::DesignElement> class for
 superclass methods.
 
 =head1 ATTRIBUTES

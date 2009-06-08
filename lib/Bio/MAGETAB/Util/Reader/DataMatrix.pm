@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: DataMatrix.pm 304 2009-05-03 11:09:08Z tfrayner $
+# $Id: DataMatrix.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Util::Reader::DataMatrix;
 
@@ -338,7 +338,7 @@ class which handles extended parsing options more transparently.
 
 =head1 ATTRIBUTES
 
-See L<Bio::MAGETAB::Util::Reader::TabFile> for superclass attributes.
+See the L<TabFile|Bio::MAGETAB::Util::Reader::TabFile> class for superclass attributes.
 
 =over 2
 
@@ -364,8 +364,8 @@ contents.
 
 =head1 SEE ALSO
 
-L<Bio::MAGETAB::Util::Reader::Tabfile>,
-L<Bio::MAGETAB::Util::Reader>,
+L<Bio::MAGETAB::Util::Reader::Tabfile>
+L<Bio::MAGETAB::Util::Reader>
 L<Bio::MAGETAB::DataMatrix>
 
 =head1 AUTHOR

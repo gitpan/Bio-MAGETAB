@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: ParameterValue.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: ParameterValue.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::ParameterValue;
 
@@ -65,7 +65,7 @@ This class is used to describe the values of parameters within a
 MAGE-TAB SDRF document. Note that as of the v1.1 MAGE-TAB
 specification, parameter values can only be used with Measurements;
 subsequent releases may allow ControlledTerms to be used as an
-alternative. See L<Bio::MAGETAB::BaseClass> for superclass methods.
+alternative. See the L<BaseClass|Bio::MAGETAB::BaseClass> class for superclass methods.
 
 =head1 ATTRIBUTES
 

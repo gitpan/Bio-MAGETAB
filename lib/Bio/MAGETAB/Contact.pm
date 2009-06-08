@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Contact.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: Contact.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Contact;
 
@@ -105,7 +105,7 @@ Bio::MAGETAB::Contact - MAGE-TAB contact class
 
 This class is used to store information on contacts (i.e., the people
 responsible for the experiment) in MAGE-TAB. See
-L<Bio::MAGETAB::BaseClass> for superclass methods.
+the L<BaseClass|Bio::MAGETAB::BaseClass> class for superclass methods.
 
 =head1 ATTRIBUTES
 

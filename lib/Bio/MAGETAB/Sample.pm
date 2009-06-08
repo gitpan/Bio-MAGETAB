@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Sample.pm 125 2008-11-30 19:15:00Z tfrayner $
+# $Id: Sample.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Sample;
 
@@ -41,7 +41,7 @@ Bio::MAGETAB::Sample - MAGE-TAB sample class
 =head1 DESCRIPTION
 
 This class is used to store information on biological samples (as
-distinct from Sources) in MAGE-TAB. L<Bio::MAGETAB::Material> for
+distinct from Sources) in MAGE-TAB. See the L<Material|Bio::MAGETAB::Material> class for
 superclass methods.
 
 =head1 ATTRIBUTES

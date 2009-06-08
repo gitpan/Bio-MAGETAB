@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: ArrayDesign.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: ArrayDesign.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::ArrayDesign;
 
@@ -113,7 +113,7 @@ Bio::MAGETAB::ArrayDesign - MAGE-TAB array design class
 This class is used to store information about array designs in
 MAGE-TAB. This class can represent information from an ADF, or a
 reference to an array design in a database. See
-L<Bio::MAGETAB::DatabaseEntry> for superclass methods.
+the L<DatabaseEntry|Bio::MAGETAB::DatabaseEntry> class for superclass methods.
 
 =head1 ATTRIBUTES
 

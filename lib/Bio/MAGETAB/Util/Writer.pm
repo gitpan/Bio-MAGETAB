@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Writer.pm 304 2009-05-03 11:09:08Z tfrayner $
+# $Id: Writer.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Util::Writer;
 
@@ -122,9 +122,9 @@ Bio::MAGETAB container, creating as many IDFs, ADFs and SDRFs as are
 necessary to do so.
 
 Export of the individual MAGE-TAB components is delegated to separate
-writer classes. See L<Bio::MAGETAB::Util::Writer::ADF>,
-L<Bio::MAGETAB::Util::Writer::IDF> and
-L<Bio::MAGETAB::Util::Writer::SDRF> if you want more control over the
+writer classes. See the L<ADF|Bio::MAGETAB::Util::Writer::ADF>,
+L<IDF|Bio::MAGETAB::Util::Writer::IDF> and
+L<SDRF|Bio::MAGETAB::Util::Writer::SDRF> classes if you want more control over the
 export process.
 
 =head1 ATTRIBUTES
@@ -134,7 +134,7 @@ export process.
 =item magetab
 
 The Bio::MAGETAB container to export. This is a required
-attribute. See L<Bio::MAGETAB> for more information on this container
+attribute. See the L<Bio::MAGETAB|Bio::MAGETAB> class for more information on this container
 class.
 
 =back

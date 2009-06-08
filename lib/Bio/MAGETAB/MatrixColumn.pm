@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: MatrixColumn.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: MatrixColumn.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::MatrixColumn;
 
@@ -58,7 +58,7 @@ Bio::MAGETAB::MatrixColumn - MAGE-TAB matrix column class
 This class is used to describe the columns of a MAGE-TAB data
 matrix. It acts as a mapping between a numbered column in the matrix,
 the quantitation type of that column, and the SDRF node or nodes to
-which it applies. See L<Bio::MAGETAB::BaseClass> for superclass
+which it applies. See the L<BaseClass|Bio::MAGETAB::BaseClass> class for superclass
 methods.
 
 =head1 ATTRIBUTES

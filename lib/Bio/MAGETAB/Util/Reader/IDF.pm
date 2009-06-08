@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: IDF.pm 316 2009-05-05 13:28:56Z tfrayner $
+# $Id: IDF.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Util::Reader::IDF;
 
@@ -502,7 +502,7 @@ class which handles extended parsing options more transparently.
 
 =head1 ATTRIBUTES
 
-See L<Bio::MAGETAB::Util::Reader::TagValueFile> for superclass attributes.
+See the L<TagValueFile|Bio::MAGETAB::Util::Reader::TagValueFile> class for superclass attributes.
 
 =over 2
 
@@ -527,9 +527,9 @@ Bio::MAGETAB::Investigation object updated with the IDF contents.
 
 =head1 SEE ALSO
 
-L<Bio::MAGETAB::Util::Reader::TagValueFile>,
-L<Bio::MAGETAB::Util::Reader::Tabfile>,
-L<Bio::MAGETAB::Util::Reader>,
+L<Bio::MAGETAB::Util::Reader::TagValueFile>
+L<Bio::MAGETAB::Util::Reader::Tabfile>
+L<Bio::MAGETAB::Util::Reader>
 L<Bio::MAGETAB::Investigation>
 
 =head1 AUTHOR

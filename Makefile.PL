@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Makefile.PL 304 2009-05-03 11:09:08Z tfrayner $
+# $Id: Makefile.PL 322 2009-05-09 09:41:46Z tfrayner $
 
 use strict;
 use warnings;
@@ -40,6 +40,7 @@ requires 'Text::CSV_XS'                => '0.32';
 
 test_requires 'Test::Exception'        => '0.26';
 
+recommends 'LWP::UserAgent'            => '5.819';
 recommends 'GraphViz'                  => '2.03';
 recommends 'Tangram'                   => '2.10';
 recommends 'DBI'                       => '';

@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Types.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: Types.pm 323 2009-06-08 07:40:43Z tfrayner $
 
 use strict;
 use warnings;
@@ -84,9 +84,8 @@ subtype Email,
     as Str,
     where { Email::Valid->address( $_ ) };
 
-# Make the classes immutable. In theory this speeds up object
-# instantiation for a small compilation time cost.
-__PACKAGE__->meta->make_immutable();
+# N.B. Don't try and make this class immutable - it'll fail on recent
+# versions of Moose, and is inappropriate anyway.
 
 no Moose;
 

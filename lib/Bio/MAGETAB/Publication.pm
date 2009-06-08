@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Publication.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: Publication.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Publication;
 
@@ -71,7 +71,7 @@ Bio::MAGETAB::Publication - MAGE-TAB publication class
 =head1 DESCRIPTION
 
 This class is used to describe the publications listed in a MAGE-TAB
-IDF file. See L<Bio::MAGETAB::BaseClass> for superclass methods.
+IDF file. See the L<BaseClass|Bio::MAGETAB::BaseClass> class for superclass methods.
 
 =head1 ATTRIBUTES
 

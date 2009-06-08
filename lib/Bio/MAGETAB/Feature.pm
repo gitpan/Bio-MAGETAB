@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Feature.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: Feature.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Feature;
 
@@ -64,7 +64,7 @@ Bio::MAGETAB::Feature - MAGE-TAB feature class
 
 This class is used to store information on array features in
 MAGE-TAB. These elements will correspond to the individual spots on
-the array. See L<Bio::MAGETAB::DesignElement> for superclass methods.
+the array. See the L<DesignElement|Bio::MAGETAB::DesignElement> class for superclass methods.
 
 =head1 ATTRIBUTES
 

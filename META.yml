@@ -23,6 +23,7 @@ recommends:
   DBD::SQLite: 0
   DBI: 0
   GraphViz: 2.03
+  LWP::UserAgent: 5.819
   Tangram: 2.10
 requires:
   Date::Manip: 5.44
@@ -39,4 +40,4 @@ requires:
   perl: 5.8.1
 resources:
   license: http://opensource.org/licenses/gpl-license.php
-version: 0.97
+version: 0.98

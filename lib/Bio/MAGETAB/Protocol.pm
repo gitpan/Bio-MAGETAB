@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Protocol.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: Protocol.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Protocol;
 
@@ -79,7 +79,7 @@ Bio::MAGETAB::Protocol - MAGE-TAB protocol class
 This class is used to describe experimental protocols in MAGE-TAB. It
 can either contain all the information about a protocol itself, or it
 can link to a protocol entry in a suitable database via its
-superclass. See L<Bio::MAGETAB::DatabaseEntry> for superclass methods.
+superclass. See the L<DatabaseEntry|Bio::MAGETAB::DatabaseEntry> class for superclass methods.
 
 =head1 ATTRIBUTES
 

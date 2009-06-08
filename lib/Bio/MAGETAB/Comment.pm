@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Comment.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: Comment.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Comment;
 
@@ -54,7 +54,7 @@ This class is used to store user-defined comments in MAGE-TAB. The
 MAGE-TAB specification indicates that these comments may be legally
 ignored by downstream data processing operations, and so therefore
 should not be used for experimental annotation purposes. See
-L<Bio::MAGETAB::BaseClass> for superclass methods.
+the L<BaseClass|Bio::MAGETAB::BaseClass> class for superclass methods.
 
 =head1 ATTRIBUTES
 

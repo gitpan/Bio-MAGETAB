@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Normalization.pm 126 2008-12-01 08:24:52Z tfrayner $
+# $Id: Normalization.pm 320 2009-05-05 16:53:27Z tfrayner $
 
 package Bio::MAGETAB::Normalization;
 
@@ -40,8 +40,8 @@ Bio::MAGETAB::Normalization - MAGE-TAB data acquisition class
 
 =head1 DESCRIPTION
 
-This class represents events which normalize or transform data. See
-L<Bio::MAGETAB::Event> for superclass methods.
+This class represents events which normalize or transform data. See the
+L<Event|Bio::MAGETAB::Event> class for superclass methods.
 
 =head1 ATTRIBUTES
 
