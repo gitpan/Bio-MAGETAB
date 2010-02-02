@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: IDF.pm 320 2009-05-05 16:53:27Z tfrayner $
+# $Id: IDF.pm 327 2010-02-02 18:02:46Z tfrayner $
 
 package Bio::MAGETAB::Util::Reader::IDF;
 
@@ -151,6 +151,9 @@ sub BUILD {
             => sub{ $self->_add_grouped_data('termsource', 'uri',      @_) },
         qr/Term *Source *Versions?/i
             => sub{ $self->_add_grouped_data('termsource', 'version',  @_) },
+
+        qr/MAGE-?TAB *Version/i    # New in 1.1; Strictly speaking 1.0 should never appear.
+            => sub{ croak("Unsupported MAGE-TAB version.") unless( first { $_[0] eq $_ } qw(1.1 1.0) ) },
     };
 
     $self->set_dispatch_table( $dispatch );

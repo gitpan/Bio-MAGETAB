@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: ADF.pm 320 2009-05-05 16:53:27Z tfrayner $
+# $Id: ADF.pm 325 2009-08-28 14:50:28Z tfrayner $
 
 package Bio::MAGETAB::Util::Writer::ADF;
 
@@ -499,7 +499,7 @@ objects.
  use Bio::MAGETAB::Util::Writer::ADF;
  my $writer = Bio::MAGETAB::Util::Writer::ADF->new({
     magetab_object => $array_design,
-    filename       => $adf_fh,
+    filehandle     => $adf_fh,
  });
  
  $writer->write();

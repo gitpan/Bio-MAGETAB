@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: 013_idf.t 309 2009-05-03 20:37:45Z tfrayner $
+# $Id: 013_idf.t 327 2010-02-02 18:02:46Z tfrayner $
 
 use strict;
 use warnings;
@@ -82,6 +82,7 @@ is( $ts->get_uri(), 'http://www.random-ontology.org/file.obo', 'and the correct 
 # FIXME test with bad IDF input (unrecognized headers etc.)
 
 __DATA__
+MAGE-TAB Version	1.1
 Investigation Title	Dummy title
 # This is a comment to be ignored.
 Experimental Design	dummy_design
