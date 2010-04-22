@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: IDF.pm 327 2010-02-02 18:02:46Z tfrayner $
+# $Id: IDF.pm 330 2010-03-02 14:49:41Z tfrayner $
 
 package Bio::MAGETAB::Util::Writer::IDF;
 
@@ -229,12 +229,12 @@ sub write {
     );
 
     # We want a regular table, so figure out how many columns we will
-    # need.
+    # need. Note that we need a minimum of 2 columns to accommodate the single fields.
     my @objcounts = map {
         my $getter = "get_$_";
         scalar @{ [ $inv->$getter ] };
     } keys %multi;
-    $self->set_num_columns( 1 + max @objcounts );
+    $self->set_num_columns( max( 1 + max @objcounts, 2 ) );
 
     # Introduce a Version tag (new in v1.1).
     $self->_write_line( 'MAGE-TAB Version', '1.1' );
@@ -318,8 +318,8 @@ Exports the Investigation to IDF.
 
 =head1 SEE ALSO
 
-L<Bio::MAGETAB::Writer>
-L<Bio::MAGETAB::Writer::Tabfile>
+L<Bio::MAGETAB::Util::Writer>
+L<Bio::MAGETAB::Util::Writer::Tabfile>
 
 =head1 AUTHOR
 

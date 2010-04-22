@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: SDRF.pm 325 2009-08-28 14:50:28Z tfrayner $
+# $Id: SDRF.pm 330 2010-03-02 14:49:41Z tfrayner $
 
 package Bio::MAGETAB::Util::Writer::SDRF;
 
@@ -839,8 +839,8 @@ Exports the SDRF object to an SDRF file.
 
 =head1 SEE ALSO
 
-L<Bio::MAGETAB::Writer>
-L<Bio::MAGETAB::Writer::Tabfile>
+L<Bio::MAGETAB::Util::Writer>
+L<Bio::MAGETAB::Util::Writer::Tabfile>
 
 =head1 AUTHOR
 
