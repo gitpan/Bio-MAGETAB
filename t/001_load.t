@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 #
-# Copyright 2008 Tim Rayner
+# Copyright 2008-2010 Tim Rayner
 # 
 # This file is part of Bio::MAGETAB.
 # 
@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: 001_load.t 308 2009-05-03 20:37:16Z tfrayner $
+# $Id: 001_load.t 333 2010-06-02 16:41:31Z tfrayner $
 #
 # t/001_load.t - check module loading
 

@@ -1,4 +1,4 @@
-# Copyright 2009 Tim Rayner
+# Copyright 2009-2010 Tim Rayner
 # 
 # This file is part of Bio::MAGETAB.
 # 
@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: RewriteAE.pm 320 2009-05-05 16:53:27Z tfrayner $
+# $Id: RewriteAE.pm 333 2010-06-02 16:41:31Z tfrayner $
 
 package Bio::MAGETAB::Util::RewriteAE;
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 #
-# Copyright 2008 Tim Rayner
+# Copyright 2008-2010 Tim Rayner
 # 
 # This file is part of Bio::MAGETAB.
 # 
@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: 014_persistence.t 309 2009-05-03 20:37:45Z tfrayner $
+# $Id: 014_persistence.t 333 2010-06-02 16:41:31Z tfrayner $
 
 # Basic tests for the Persistence module. FIXME this needs to be
 # extended to test insertion, update, retrieval and deletion of all

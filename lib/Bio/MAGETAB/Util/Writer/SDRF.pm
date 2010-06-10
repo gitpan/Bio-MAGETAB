@@ -1,4 +1,4 @@
-# Copyright 2008 Tim Rayner
+# Copyright 2008-2010 Tim Rayner
 # 
 # This file is part of Bio::MAGETAB.
 # 
@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: SDRF.pm 330 2010-03-02 14:49:41Z tfrayner $
+# $Id: SDRF.pm 333 2010-06-02 16:41:31Z tfrayner $
 
 package Bio::MAGETAB::Util::Writer::SDRF;
 
@@ -331,6 +331,18 @@ sub _process_sources {
     $self->_process_materials( $objs );
 }
 
+sub _format_contact_name {
+
+    my ( $self, $contact ) = @_;
+
+    my $first = $contact->get_firstName();
+    my $last  = $contact->get_lastName();
+    $first = q{} if ( ! defined $first );
+    $last  = q{} if ( ! defined $last );
+
+    return( sprintf( "%s %s", $first, $last ) );
+}
+
 sub _process_obj_contacts {
 
     my ( $self, $objs, $colname, $getter ) = @_;
@@ -346,9 +358,7 @@ sub _process_obj_contacts {
 
     while ( $self->_remaining_elements( \@contacts ) ) {
         my $slice = $self->_next_slice( \@contacts,
-                                        sub { sprintf( "%s %s",
-                                                       $_[0]->get_firstName(),
-                                                       $_[0]->get_lastName(),) } );
+                                        sub { $self->_format_contact_name( $_[0] ) } );
         $self->_process_contacts( $slice, $colname );
     }
 }
@@ -359,9 +369,7 @@ sub _process_contacts {
 
     $self->_add_single_column( $objs,
                                $colname,
-                               sub { sprintf( "%s %s",
-                                              $_[0]->get_firstName(),
-                                              $_[0]->get_lastName(), ) }, );
+                               sub { $self->_format_contact_name( $_[0] ) } );
 
     # Comments
     $self->_process_objects( $objs );
@@ -427,10 +435,13 @@ sub _process_dbentries {
         },
     );
 
-    if ( scalar grep { $_ && defined $_->get_accession() } @{ $objs } ) {
-        $self->_add_single_column( $objs,
-                                   'Term Accession Number',
-                                   sub { $_[0]->get_accession() }, );
+    # Skip accessions for MAGE-TAB v1.0 export.
+    if ( $self->get_export_version ne '1.0' ) {
+        if ( scalar grep { $_ && defined $_->get_accession() } @{ $objs } ) {
+            $self->_add_single_column( $objs,
+                                       'Term Accession Number',
+                                       sub { $_[0]->get_accession() }, );
+        }
     }
 }
 
@@ -587,7 +598,7 @@ sub _process_assays {
             $self->_process_array_designs( \@arrays );
         }
     }
-    else {
+    elsif ( $self->get_export_version() ne '1.0' ) {
         $self->_add_single_column( $objs,
                                    'Assay Name',
                                    sub { $_[0]->get_name() }, );
@@ -601,6 +612,9 @@ sub _process_assays {
         if ( scalar grep { defined $_ } @types ) {
             $self->_process_controlled_terms( \@types, 'Technology Type' );
         }
+    }
+    else {
+        croak("Error: Attempting to export non-hybridization Assay type in MAGE-TAB v1.0 format.");
     }
 }
 

@@ -1,4 +1,4 @@
-# Copyright 2008 Tim Rayner
+# Copyright 2008-2010 Tim Rayner
 # 
 # This file is part of Bio::MAGETAB.
 # 
@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Tabfile.pm 320 2009-05-05 16:53:27Z tfrayner $
+# $Id: Tabfile.pm 333 2010-06-02 16:41:31Z tfrayner $
 
 package Bio::MAGETAB::Util::Writer::Tabfile;
 
@@ -24,8 +24,9 @@ use Moose;
 
 use Carp;
 use Text::CSV_XS;
+use List::Util qw( first );
 
-use MooseX::Types::Moose qw( Int FileHandle );
+use MooseX::Types::Moose qw( Int FileHandle Str );
 
 has 'filehandle'         => ( is         => 'rw',
                               isa        => FileHandle,
@@ -40,10 +41,39 @@ has 'csv_writer'         => ( is         => 'rw',
                               isa        => 'Text::CSV_XS',
                               required   => 0 );
 
+has 'export_version'     => ( is         => 'ro',
+                              isa        => Str,
+                              required   => 1,
+                              default    => '1.1' );
+
+sub BUILD {
+
+    # Note that this is also checked in B::M::U::Writer
+    my ( $self, $params ) = @_;
+
+    my $version = $params->{'export_version'};
+    if ( defined $version ) {
+        unless ( first { $_ eq $version } qw( 1.0 1.1 ) ) {
+            croak("Error: Export of MAGE-TAB version $version is not yet supported.");
+        }
+    }
+
+    return;
+}
+
 sub _get_type_termsource_name {
     my ( $self, $type ) = @_;
     my $ts = $type ? $type->get_termSource() : undef;
     return $ts ? $ts->get_name() : q{};
+}
+
+sub _get_thing_accession {
+    my ( $self, $thing ) = @_;
+
+    # Return undef if we're exporting MAGE-TAB v1.0.
+    return if ( $self->get_export_version() eq '1.0' );
+
+    return $thing->get_accession();    
 }
 
 sub _write_line {
@@ -134,6 +164,11 @@ anything is exported. Typically calculated and set from the subclass.
 
 The Text::CSV_XS object to use for output. This attribute is typically
 set in the subclass.
+
+=item export_version
+
+A string indicating which version of the MAGE-TAB format to export;
+currently restricted to "1.0" or "1.1". The default is "1.1".
 
 =back
 

@@ -1,4 +1,4 @@
-# Copyright 2008 Tim Rayner
+# Copyright 2008-2010 Tim Rayner
 # 
 # This file is part of Bio::MAGETAB.
 # 
@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: BaseClass.pm 289 2009-04-30 13:23:50Z tfrayner $
+# $Id: BaseClass.pm 333 2010-06-02 16:41:31Z tfrayner $
 
 package Bio::MAGETAB::BaseClass;
 

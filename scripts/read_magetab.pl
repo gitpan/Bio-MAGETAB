@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 #
-# Copyright 2008 Tim Rayner
+# Copyright 2008-2010 Tim Rayner
 # 
 # This file is part of Bio::MAGETAB.
 # 
@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: read_magetab.pl 309 2009-05-03 20:37:45Z tfrayner $
+# $Id: read_magetab.pl 333 2010-06-02 16:41:31Z tfrayner $
 
 
 # This is a very simplistic example script to illustrate how one might

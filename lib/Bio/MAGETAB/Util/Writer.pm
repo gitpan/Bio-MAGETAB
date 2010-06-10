@@ -1,4 +1,4 @@
-# Copyright 2008 Tim Rayner
+# Copyright 2008-2010 Tim Rayner
 # 
 # This file is part of Bio::MAGETAB.
 # 
@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Writer.pm 320 2009-05-05 16:53:27Z tfrayner $
+# $Id: Writer.pm 333 2010-06-02 16:41:31Z tfrayner $
 
 package Bio::MAGETAB::Util::Writer;
 
@@ -23,6 +23,9 @@ use Moose::Policy 'Moose::Policy::FollowPBP';
 use Moose;
 
 use Carp;
+use List::Util qw( first );
+
+use MooseX::Types::Moose qw( Str );
 
 use Bio::MAGETAB::Util::Writer::IDF;
 use Bio::MAGETAB::Util::Writer::ADF;
@@ -31,6 +34,26 @@ use Bio::MAGETAB::Util::Writer::SDRF;
 has 'magetab'            => ( is         => 'rw',
                               isa        => 'Bio::MAGETAB',
                               required   => 1 );
+
+has 'export_version'     => ( is         => 'ro',
+                              isa        => Str,
+                              required   => 1,
+                              default    => '1.1' );
+
+sub BUILD {
+
+    # Note that this is also checked in B::M::U::Writer::TabFile
+    my ( $self, $params ) = @_;
+
+    my $version = $params->{'export_version'};
+    if ( defined $version ) {
+        unless ( first { $_ eq $version } qw( 1.0 1.1 ) ) {
+            croak("Error: Export of MAGE-TAB version $version is not yet supported.");
+        }
+    }
+
+    return;
+}
 
 sub write {
 
@@ -46,6 +69,7 @@ sub write {
         my $writer = Bio::MAGETAB::Util::Writer::IDF->new(
             magetab_object => $investigation,
             filehandle     => $fh,
+            export_version => $self->get_export_version(),
         );
 
         $writer->write();
@@ -65,6 +89,7 @@ sub write {
         my $writer = Bio::MAGETAB::Util::Writer::ADF->new(
             magetab_object => $array,
             filehandle     => $fh,
+            export_version => $self->get_export_version(),
         );
 
         $writer->write();
@@ -78,6 +103,7 @@ sub write {
         my $writer = Bio::MAGETAB::Util::Writer::SDRF->new(
             magetab_object => $sdrf,
             filehandle     => $fh,
+            export_version => $self->get_export_version(),
         );
 
         $writer->write();
@@ -136,6 +162,11 @@ export process.
 The Bio::MAGETAB container to export. This is a required
 attribute. See the L<Bio::MAGETAB|Bio::MAGETAB> class for more information on this container
 class.
+
+=item export_version
+
+A string indicating which version of the MAGE-TAB format to export;
+currently restricted to "1.0" or "1.1". The default is "1.1".
 
 =back
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 #
-# Copyright 2009 Tim Rayner
+# Copyright 2009-2010 Tim Rayner
 # 
 # This file is part of Bio::MAGETAB.
 # 
@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: fix_ae_magetab.pl 308 2009-05-03 20:37:16Z tfrayner $
+# $Id: fix_ae_magetab.pl 333 2010-06-02 16:41:31Z tfrayner $
 
 # This is a simple utility script which can be used to convert the
 # current ArrayExpress implementation of the MAGE-TAB format into

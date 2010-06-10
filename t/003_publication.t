@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 #
-# Copyright 2008 Tim Rayner
+# Copyright 2008-2010 Tim Rayner
 # 
 # This file is part of Bio::MAGETAB.
 # 
@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: 003_publication.t 46 2008-05-31 21:50:26Z tfrayner $
+# $Id: 003_publication.t 333 2010-06-02 16:41:31Z tfrayner $
 
 use strict;
 use warnings;
