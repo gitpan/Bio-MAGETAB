@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: SDRF.pm 333 2010-06-02 16:41:31Z tfrayner $
+# $Id: SDRF.pm 338 2010-07-22 13:40:13Z tfrayner $
 
 package Bio::MAGETAB::Util::Writer::SDRF;
 
@@ -337,10 +337,11 @@ sub _format_contact_name {
 
     my $first = $contact->get_firstName();
     my $last  = $contact->get_lastName();
-    $first = q{} if ( ! defined $first );
-    $last  = q{} if ( ! defined $last );
+    my @name;
+    push @name, $first if ( defined $first );
+    push @name, $last  if ( defined $last  );
 
-    return( sprintf( "%s %s", $first, $last ) );
+    return join(" ", @name);
 }
 
 sub _process_obj_contacts {
@@ -532,7 +533,7 @@ sub _process_materials {
     while ( $self->_remaining_elements( \@chars ) ) {
         my ( $slice, $category ) =
             $self->_next_slice( \@chars, sub { $_[0]->get_category() } );
-        $self->_process_controlled_terms( $slice, "Characteristic [$category]" );
+        $self->_process_controlled_terms( $slice, "Characteristics [$category]" );
     }
 
     # Measurements
@@ -546,7 +547,7 @@ sub _process_materials {
     while ( $self->_remaining_elements( \@measurements ) ) {
         my ( $slice, $type ) =
             $self->_next_slice( \@measurements, sub { $_[0]->get_measurementType() } );
-        $self->_process_measurements( $slice, "Characteristic [$type]" );
+        $self->_process_measurements( $slice, "Characteristics [$type]" );
     }
 }
 

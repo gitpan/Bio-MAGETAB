@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: IDF.pm 333 2010-06-02 16:41:31Z tfrayner $
+# $Id: IDF.pm 337 2010-07-22 13:38:47Z tfrayner $
 
 package Bio::MAGETAB::Util::Writer::IDF;
 
@@ -179,7 +179,7 @@ sub write {
                              map { $self->_get_thing_type_accession($_) } @_ ] ) },
         ],
         'sdrfs' => [
-            sub { return ( [ 'SDRF Files', map { $_->get_uri()        } @_ ] ) },
+            sub { return ( [ 'SDRF File', map { $_->get_uri()        } @_ ] ) },
         ],
         'protocols' => [
             sub { return ( [ 'Protocol Name',        map { $_->get_name()     } @_ ] ) },
