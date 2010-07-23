@@ -15,14 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Reader.pm 333 2010-06-02 16:41:31Z tfrayner $
+# $Id: Reader.pm 341 2010-07-23 13:26:28Z tfrayner $
 
 package Bio::MAGETAB::Util::Reader;
 
 use 5.008001;
 
-use Moose::Policy 'Moose::Policy::FollowPBP';
 use Moose;
+use MooseX::FollowPBP;
 
 use MooseX::Types::Moose qw( Str Bool );
 use Bio::MAGETAB::Types qw( Uri );
@@ -66,7 +66,7 @@ has 'builder'             => ( is         => 'rw',
                                required   => 1 );
 
 # Make this visible to users of the module.
-our $VERSION = 0.4;
+our $VERSION = 1.0;
 
 sub parse {
 

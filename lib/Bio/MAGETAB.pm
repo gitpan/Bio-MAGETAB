@@ -15,15 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: MAGETAB.pm 336 2010-06-24 17:51:31Z tfrayner $
+# $Id: MAGETAB.pm 341 2010-07-23 13:26:28Z tfrayner $
 
 # Convenience class for module loading and object tracking.
 package Bio::MAGETAB;
 
 use 5.008001;
 
-use Moose::Policy 'Moose::Policy::FollowPBP';
 use Moose;
+use MooseX::FollowPBP;
 
 use Bio::MAGETAB::BaseClass;
 
@@ -31,7 +31,7 @@ use List::Util qw(first);
 
 use MooseX::Types::Moose qw( HashRef );
 
-our $VERSION = 1.11;
+our $VERSION = 1.12;
 
 # This cache is used to store all the Bio::MAGETAB objects registered
 # with this instance (which, by default, is all of them).

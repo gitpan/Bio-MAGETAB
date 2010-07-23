@@ -15,12 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: ArrayDesign.pm 333 2010-06-02 16:41:31Z tfrayner $
+# $Id: ArrayDesign.pm 340 2010-07-23 13:19:27Z tfrayner $
 
 package Bio::MAGETAB::ArrayDesign;
 
-use Moose::Policy 'Moose::Policy::FollowPBP';
 use Moose;
+use MooseX::FollowPBP;
 
 use MooseX::Types::Moose qw(Str ArrayRef);
 use Bio::MAGETAB::Types qw(Uri);

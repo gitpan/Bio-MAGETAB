@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Makefile.PL 333 2010-06-02 16:41:31Z tfrayner $
+# $Id: Makefile.PL 340 2010-07-23 13:19:27Z tfrayner $
 
 use strict;
 use warnings;
@@ -27,7 +27,7 @@ use inc::Module::Install;
 all_from 'lib/Bio/MAGETAB.pm';
 
 requires 'Moose'                       => '0.43';
-requires 'Moose::Policy'               => '0.03';
+requires 'MooseX::FollowPBP'           => '0.04';
 requires 'MooseX::Types'               => '0.10';
 requires 'Params::Coerce'              => '0.14';
 requires 'URI'                         => '1.35';

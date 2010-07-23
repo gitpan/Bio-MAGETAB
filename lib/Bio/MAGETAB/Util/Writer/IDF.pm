@@ -15,12 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: IDF.pm 337 2010-07-22 13:38:47Z tfrayner $
+# $Id: IDF.pm 340 2010-07-23 13:19:27Z tfrayner $
 
 package Bio::MAGETAB::Util::Writer::IDF;
 
-use Moose::Policy 'Moose::Policy::FollowPBP';
 use Moose;
+use MooseX::FollowPBP;
 
 use Carp;
 use List::Util qw( max );

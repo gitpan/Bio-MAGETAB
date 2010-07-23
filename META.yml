@@ -8,7 +8,7 @@ build_requires:
 configure_requires:
   ExtUtils::MakeMaker: 6.42
 distribution_type: module
-generated_by: 'Module::Install version 0.91'
+generated_by: 'Module::Install version 0.95'
 license: gpl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -31,7 +31,7 @@ requires:
   DateTime::Format::DateManip: 0.04
   Email::Valid: 0.179
   Moose: 0.43
-  Moose::Policy: 0.03
+  MooseX::FollowPBP: 0.04
   MooseX::Types: 0.10
   Params::Coerce: 0.14
   Parse::RecDescent: 1.96.0
@@ -40,4 +40,4 @@ requires:
   perl: 5.8.1
 resources:
   license: http://opensource.org/licenses/gpl-license.php
-version: 1.11
+version: 1.12
