@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: deploy_magetab_db.pl 333 2010-06-02 16:41:31Z tfrayner $
+# $Id: deploy_magetab_db.pl 351 2010-09-03 10:58:15Z tfrayner $
 
 use strict;
 use warnings;

@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Tabfile.pm 340 2010-07-23 13:19:27Z tfrayner $
+# $Id: Tabfile.pm 351 2010-09-03 10:58:15Z tfrayner $
 
 package Bio::MAGETAB::Util::Writer::Tabfile;
 
@@ -30,7 +30,6 @@ use MooseX::Types::Moose qw( Int FileHandle Str );
 
 has 'filehandle'         => ( is         => 'rw',
                               isa        => FileHandle,
-                              coerce     => 1,
                               required   => 1 );
 
 has 'num_columns'        => ( is         => 'rw',
