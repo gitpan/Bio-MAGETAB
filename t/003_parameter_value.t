@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: 003_parameter_value.t 333 2010-06-02 16:41:31Z tfrayner $
+# $Id: 003_parameter_value.t 361 2011-04-18 20:01:51Z tfrayner $
 
 use strict;
 use warnings;
@@ -36,11 +36,13 @@ INIT {
 use Bio::MAGETAB::Protocol;
 use Bio::MAGETAB::ProtocolParameter;
 use Bio::MAGETAB::Measurement;
+use Bio::MAGETAB::ControlledTerm;
 use Bio::MAGETAB::Comment;
 
 my $prot = Bio::MAGETAB::Protocol->new( name => 'test protocol' );
 my $parm = Bio::MAGETAB::ProtocolParameter->new( name => 'test param', protocol => $prot );
 my $meas = Bio::MAGETAB::Measurement->new( measurementType => 'test measurement', value => 'value' );
+my $term = Bio::MAGETAB::ControlledTerm->new( category => 'test category', value => 'test value' );
 my $comm = Bio::MAGETAB::Comment->new( name => 'test comment', value => 'of interest' );
 
 my %required_attr = (
@@ -50,22 +52,26 @@ my %required_attr = (
 my %optional_attr = (
     comments    => [ $comm ],
     measurement => $meas,
+    term        => $term,
 );
 
 my %bad_attr = (
     measurement => 'test',
     parameter   => 'test',
     comments    => 'test',
+    term        => 'test',
 );
 
 my $prot2 = Bio::MAGETAB::Protocol->new( name => 'test protocol' );
 my $parm2 = Bio::MAGETAB::ProtocolParameter->new( name => 'test param', protocol => $prot2 );
 my $meas2 = Bio::MAGETAB::Measurement->new( measurementType => 'test measurement', value => 'value' );
+my $term2 = Bio::MAGETAB::ControlledTerm->new( category => 'test category 2', value => 'test value' );
 my $comm2 = Bio::MAGETAB::Comment->new( name => 'test comment', value => 'of interest' );
 
 my %secondary_attr = (
     measurement => $meas2,
     parameter   => $parm2,
+    term        => $term2,
     comments    => [ $comm2 ],
 );
 

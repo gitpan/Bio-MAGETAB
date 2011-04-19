@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Types.pm 333 2010-06-02 16:41:31Z tfrayner $
+# $Id: Types.pm 359 2011-04-15 13:14:26Z tfrayner $
 
 use strict;
 use warnings;
@@ -27,6 +27,7 @@ use MooseX::Types
     -declare => [ qw( Uri Date Email ) ];
 
 use URI;
+use URI::file;
 use DateTime;
 use Email::Valid;
 use Params::Coerce;
@@ -46,12 +47,21 @@ coerce Uri,
 
     from Str,
     via {
-        my $uri = URI->new( $_ );
-
-        # We assume here that thet default URI scheme is "file".
-        unless ( $uri->scheme() ) {
-            $uri->scheme('file');
+        my $uri;
+        
+        # Attempt to catch MSWin32 "C:\..."-style URIs.
+        if ( $^O eq 'MSWin32' && $_ =~ m/\A [a-z] :/ixms ) {
+            $uri = URI::file->new( $_, 'win32' );
         }
+        else {
+            $uri = URI->new( $_ );
+
+            # We assume here that thet default URI scheme is "file".
+            unless ( $uri->scheme() ) {
+                $uri->scheme('file');
+            }
+        }
+
         return $uri;
     };
 

@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Persistence.pm 340 2010-07-23 13:19:27Z tfrayner $
+# $Id: Persistence.pm 361 2011-04-18 20:01:51Z tfrayner $
 
 package Bio::MAGETAB::Util::Persistence;
 
@@ -320,7 +320,7 @@ sub class_config {
             fields => {
 
                 # N.B. measurement better as iref (which is not fully implemented yet).
-                ref    => [ qw( parameter measurement ) ],
+                ref    => [ qw( parameter measurement term ) ],
                 iarray => { comments => { class  => 'Bio::MAGETAB::Comment',
                                           aggreg => 1 }, },
             },
