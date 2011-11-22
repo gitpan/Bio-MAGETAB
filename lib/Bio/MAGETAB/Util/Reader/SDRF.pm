@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: SDRF.pm 362 2011-04-18 20:06:04Z tfrayner $
+# $Id: SDRF.pm 366 2011-07-17 10:52:45Z tfrayner $
 
 package Bio::MAGETAB::Util::Reader::SDRF;
 
@@ -26,6 +26,7 @@ use Carp;
 use List::Util qw(first);
 use English qw( -no_match_vars );
 use Parse::RecDescent;
+use File::Temp qw(tempfile);
 
 BEGIN { extends 'Bio::MAGETAB::Util::Reader::Tabfile' };
 
@@ -168,14 +169,12 @@ sub _parse_header {
     # N.B. MAGE-TAB 1.1 SDRFs can actually be empty, so an empty
     # $header_string is valid at this point.
 
-    # FIXME This next line is an egregious hack; it reopens an
-    # (*undocumented*) filehandle in the Parse::RecDescent module to a
-    # local variable so we can capture STDERR. I tried doing this the
-    # correct way (open(local *STDERR, '>', \$parse_error)) but
-    # couldn't get it to work properly. We'll want to revisit this at
-    # some point.
-    open( *Parse::RecDescent::ERROR, '>', \(my $parse_error) )
-	or croak("Error: unable to redirect STDERR for MAGE-TAB header parsing.");
+    # Redirect error reporting to a temp filehandle which we read in
+    # the event of failure. Confirmed to work with P::RD 1.965001;
+    # doesn't work with 1.966_000 dev release.
+    my $error_fh = tempfile();
+    Parse::RecDescent::redirect_reporting_to($error_fh, '+>')
+        or croak("Error: unable to redirect Parse::RecDescent errors to temp filehandle.");
 
     # Set the token separator character.
     $Parse::RecDescent::skip = ' *\x{0} *';
@@ -183,7 +182,7 @@ sub _parse_header {
     # FIXME most of these are removable once development is advanced.
     $::RD_ERRORS++;       # unless undefined, report fatal errors
     $::RD_WARN++;         # unless undefined, also report non-fatal problems
-    $::RD_HINT++;         # if defined, also suggestion remedies
+    $::RD_HINT++;         # if defined, also suggest remedies
 
     # Generate the grammar parser first.
     my $parser = Parse::RecDescent->new($GRAMMAR) or die("Bad grammar!: $@");
@@ -196,8 +195,9 @@ sub _parse_header {
     # we get here. N.B. $! doesn't really give a useful error here so
     # we don't use it.
     unless (defined $row_parser) {
+        seek($error_fh, 0, 0) or croak("Unable to rewind Parse::RecDescent error filehandle: $!");
 	die(
-	    qq{\nERROR parsing header line:\n} . $parse_error
+	    qq{\nERROR parsing header line:\n} . join(q{}, <$error_fh>)
 	);
     }
 
@@ -208,7 +208,7 @@ sub _create_source {
 
     my ( $self, $name ) = @_;
 
-    return if ( $name =~ $BLANK );
+    return if ( ! defined $name || $name =~ $BLANK );
 
     my $source = $self->get_builder()->find_or_create_source({
         name  => $name,
@@ -221,7 +221,7 @@ sub _create_providers {
 
     my ( $self, $providers, $source ) = @_;
 
-    return if ( ! $source || $providers =~ $BLANK );
+    return if ( ! $source || ! defined $providers || $providers =~ $BLANK );
 
     my @names = split /\s*;\s*/, $providers;
 
@@ -249,7 +249,7 @@ sub _create_description {
 
     my ( $self, $description, $describable ) = @_;
 
-    return if ( ! $describable || $description =~ $BLANK );
+    return if ( ! $describable || ! defined $description || $description =~ $BLANK );
 
     if ( $describable ) {
         $describable->set_description( $description );
@@ -349,7 +349,7 @@ sub _create_sample {
 
     my ( $self, $name, $previous, $protocolapps ) = @_;
 
-    return if ( $name =~ $BLANK );
+    return if ( ! defined $name || $name =~ $BLANK );
 
     my $sample = $self->get_builder()->find_or_create_sample({
         name => $name,
@@ -364,7 +364,7 @@ sub _create_extract {
 
     my ( $self, $name, $previous, $protocolapps ) = @_;
 
-    return if ( $name =~ $BLANK );
+    return if ( ! defined $name || $name =~ $BLANK );
 
     my $extract = $self->get_builder()->find_or_create_extract({
         name => $name,
@@ -379,7 +379,7 @@ sub _create_labeled_extract {
 
     my ( $self, $name, $previous, $protocolapps ) = @_;
 
-    return if ( $name =~ $BLANK );
+    return if ( ! defined $name || $name =~ $BLANK );
 
     my $labeled_extract = $self->get_builder()->find_or_create_labeled_extract({
         name  => $name,
@@ -394,7 +394,7 @@ sub _create_label {
 
     my ( $self, $dyename, $le, $termsource, $accession ) = @_;
 
-    return if ( ! $le || $dyename =~ $BLANK );
+    return if ( ! $le || ! defined $dyename || $dyename =~ $BLANK );
 
     my $ts_obj;
     if ( $termsource ) {
@@ -422,7 +422,7 @@ sub _create_characteristic_value {
 
     my ( $self, $category, $value, $material, $termsource, $accession ) = @_;
 
-    return if ( ! $material || $value =~ $BLANK );
+    return if ( ! $material || ! defined $value || $value =~ $BLANK );
 
     my $ts_obj;
     if ( $termsource ) {
@@ -447,7 +447,7 @@ sub _create_characteristic_measurement {
 
     my ( $self, $type, $value, $material ) = @_;
 
-    return if ( ! $material || $value =~ $BLANK );
+    return if ( ! $material || ! defined $value || $value =~ $BLANK );
 
     my $measurement = $self->get_builder()->find_or_create_measurement({
         measurementType  => $type,
@@ -464,7 +464,7 @@ sub _create_material_type {
 
     my ( $self, $value, $material, $termsource, $accession ) = @_;
 
-    return if ( ! $material || $value =~ $BLANK );
+    return if ( ! $material || ! defined $value || $value =~ $BLANK );
 
     my $ts_obj;
     if ( $termsource ) {
@@ -496,7 +496,7 @@ sub _create_protocolapplication {
 
     my ( $self, $name, $namespace, $termsource, $accession ) = @_;
 
-    return if ( $name =~ $BLANK );
+    return if ( ! defined $name || $name =~ $BLANK );
 
     my ( $protocol, $ts_obj );
 
@@ -540,7 +540,7 @@ sub _create_performers {
 
     my ( $self, $performers, $proto_app ) = @_;
 
-    return if ( ! $proto_app || $performers =~ $BLANK );
+    return if ( ! $proto_app || ! defined $performers || $performers =~ $BLANK );
 
     my @names = split /\s*;\s*/, $performers;
 
@@ -568,7 +568,7 @@ sub _create_date {
 
     my ( $self, $date, $proto_app ) = @_;
 
-    return if ( ! $proto_app || $date =~ $BLANK );
+    return if ( ! $proto_app || ! defined $date || $date =~ $BLANK );
 
     # Protocol app is still a hashref at this stage.
     $proto_app->{date} = $date if $proto_app;
@@ -580,7 +580,7 @@ sub _create_parametervalue_measurement {
 
     my ( $self, $paramname, $value, $protocolapp ) = @_;
 
-    return if ( ! $protocolapp || $value =~ $BLANK );
+    return if ( ! $protocolapp || ! defined $value || $value =~ $BLANK );
 
     # Protocol app is still a hashref at this stage.
     my $protocol = $protocolapp->{protocol};
@@ -618,7 +618,7 @@ sub _create_parametervalue_value {
 
     my ( $self, $paramname, $value, $protocolapp, $termsource, $accession ) = @_;
 
-    return if ( ! $protocolapp || $value =~ $BLANK );
+    return if ( ! $protocolapp || ! defined $value || $value =~ $BLANK );
 
     # Protocol app is still a hashref at this stage.
     my $protocol = $protocolapp->{protocol};
@@ -688,7 +688,7 @@ sub _add_value_to_parameter {
 
     my ( $self, $parameter, $termsource, $accession ) = @_;
 
-    return if ( $termsource =~ $BLANK || ! $parameter );
+    return if ( ! defined $termsource || $termsource =~ $BLANK || ! $parameter );
 
     my $ts_obj = $self->get_builder()->get_term_source({
         'name' => $termsource,
@@ -718,7 +718,7 @@ sub _create_unit {
 
     my ( $self, $type, $name, $thing, $termsource, $accession ) = @_;
 
-    return if ( ! $thing || $name =~ $BLANK );
+    return if ( ! $thing || ! defined $name || $name =~ $BLANK );
 
     my $ts_obj;
     if ( $termsource ) {
@@ -782,7 +782,7 @@ sub _create_technology_type {
 
     my ( $self, $value, $assay, $termsource, $accession ) = @_;
 
-    return if ( ! $assay || $value =~ $BLANK );
+    return if ( ! $assay || ! defined $value || $value =~ $BLANK );
 
     my $ts_obj;
     if ( $termsource ) {
@@ -810,7 +810,7 @@ sub _create_hybridization {
 
     my ( $self, $name, $previous, $protocolapps, $channel ) = @_;
 
-    return if ( $name =~ $BLANK );
+    return if ( ! defined $name || $name =~ $BLANK );
 
     my $default_type = $self->get_builder()->find_or_create_controlled_term({
         category   => 'TechnologyType',    #FIXME hard-coded.
@@ -831,7 +831,7 @@ sub _create_assay {
 
     my ( $self, $name, $previous, $protocolapps, $channel ) = @_;
 
-    return if ( $name =~ $BLANK );
+    return if ( ! defined $name || $name =~ $BLANK );
 
     my $dummy_type = $self->get_builder()->find_or_create_controlled_term({
         category   => 'TechnologyType',    #FIXME hard-coded.
@@ -859,7 +859,7 @@ sub _create_array {
     # $accession is the optional contents of the Term Accession
     # Number column.
 
-    return if ( ! $assay || $name =~ $BLANK );
+    return if ( ! $assay || ! defined $name || $name =~ $BLANK );
 
     my $array_design;
 
@@ -904,7 +904,7 @@ sub _create_array_from_file {
 
     my ( $self, $uri, $assay ) = @_;
 
-    return if ( ! $assay || $uri =~ $BLANK );
+    return if ( ! $assay || ! defined $uri || $uri =~ $BLANK );
 
     # We just create a stub object here for now; the main Reader
     # object will come back and fill in the details using the ADF
@@ -932,7 +932,7 @@ sub _create_scan {
 
     my ( $self, $name, $previous, $protocolapps ) = @_;
 
-    return if ( $name =~ $BLANK );
+    return if ( ! defined $name || $name =~ $BLANK );
 
     my $scan = $self->get_builder()->find_or_create_data_acquisition({
         name => $name,
@@ -947,7 +947,7 @@ sub _create_normalization {
 
     my ( $self, $name, $previous, $protocolapps ) = @_;
 
-    return if ( $name =~ $BLANK );
+    return if ( ! defined $name || $name =~ $BLANK );
 
     my $normalization = $self->get_builder()->find_or_create_normalization({
         name => $name,
@@ -999,7 +999,7 @@ sub _create_data_file {
 
     my ( $self, $uri, $type_str, $previous, $protocolapps ) = @_;
 
-    return if ( ! $uri || $uri =~ $BLANK );
+    return if ( ! defined $uri || $uri =~ $BLANK );
 
     my $format = $self->_find_data_format( $uri );
 
@@ -1023,7 +1023,7 @@ sub _create_data_matrix {
 
     my ( $self, $uri, $type_str, $previous, $protocolapps ) = @_;
 
-    return if ( ! $uri || $uri =~ $BLANK );
+    return if ( ! defined $uri || $uri =~ $BLANK );
 
     # There's a lot more metadata to acquire here, by actually parsing
     # the data matrix file. We do that later after everything else has
@@ -1069,7 +1069,7 @@ sub _create_factorvalue_value {
 
     my ( $self, $factorname, $altcategory, $value, $termsource, $accession ) = @_;
 
-    return if ( $value =~ $BLANK );
+    return if ( ! defined $value || $value =~ $BLANK );
 
     my $exp_factor = $self->get_builder()->get_factor({
         name => $factorname,
@@ -1113,7 +1113,7 @@ sub _create_factorvalue_measurement {
 
     my ( $self, $factorname, $altcategory, $value ) = @_;
 
-    return if ( $value =~ $BLANK );
+    return if ( ! defined $value || $value =~ $BLANK );
 
     my $exp_factor = $self->get_builder()->get_factor({
         name => $factorname,
@@ -1186,7 +1186,7 @@ sub _create_comment {
 
     my ( $self, $name, $value, $thing ) = @_;
 
-    return if ( ! $thing || $value =~ $BLANK );
+    return if ( ! $thing || ! defined $value || $value =~ $BLANK );
 
     my $comment = $self->get_builder()->find_or_create_comment({
         name   => $name,

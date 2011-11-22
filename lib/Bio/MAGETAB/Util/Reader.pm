@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Reader.pm 360 2011-04-15 13:14:45Z tfrayner $
+# $Id: Reader.pm 364 2011-04-21 12:09:19Z tfrayner $
 
 package Bio::MAGETAB::Util::Reader;
 
@@ -230,6 +230,11 @@ MAGE-TAB documents together. In its simplest form this internal store
 is a simple hash; however in principle this could be extended by
 subclassing Builder to create e.g. persistent database storage
 mechanisms.
+
+=item ignore_datafiles
+
+A boolean value (default FALSE) indicating whether to skip parsing of
+Data Matrix files.
 
 =item common_directory
 

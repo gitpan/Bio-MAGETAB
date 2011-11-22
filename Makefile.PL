@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Makefile.PL 340 2010-07-23 13:19:27Z tfrayner $
+# $Id: Makefile.PL 366 2011-07-17 10:52:45Z tfrayner $
 
 use strict;
 use warnings;
@@ -35,7 +35,7 @@ requires 'Date::Manip'                 => '5.44';
 requires 'DateTime'                    => '0.4302';
 requires 'DateTime::Format::DateManip' => '0.04';
 requires 'Email::Valid'                => '0.179';
-requires 'Parse::RecDescent'           => '1.96.0';
+requires 'Parse::RecDescent'           => '1.965001';
 requires 'Text::CSV_XS'                => '0.32';
 
 test_requires 'Test::Exception'        => '0.26';
