@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: SDRF.pm 362 2011-04-18 20:06:04Z tfrayner $
+# $Id: SDRF.pm 369 2012-07-17 18:01:48Z tfrayner $
 
 package Bio::MAGETAB::Util::Writer::SDRF;
 
@@ -678,8 +678,8 @@ sub _process_datafiles {
     my @defined = grep { defined $_ } @{ $objs };
     my $type = $defined[0]->get_dataType()->get_value();
     my $colname = $type eq 'image' ? 'Image File'
-                         : 'raw'   ? 'Array Data File'
-                         : 'Derived Array Data File';
+                : $type eq 'raw'   ? 'Array Data File'
+                                   : 'Derived Array Data File';
 
     $self->_add_single_column( $objs,
                                $colname,

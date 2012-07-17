@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: SDRF.pm 340 2010-07-23 13:19:27Z tfrayner $
+# $Id: SDRF.pm 369 2012-07-17 18:01:48Z tfrayner $
 
 package Bio::MAGETAB::SDRF;
 
@@ -24,6 +24,8 @@ use MooseX::FollowPBP;
 
 use MooseX::Types::Moose qw( ArrayRef );
 use Bio::MAGETAB::Types qw( Uri );
+use Carp;
+use Storable qw( dclone );
 
 BEGIN { extends 'Bio::MAGETAB::BaseClass' };
 
@@ -114,7 +116,11 @@ sub _rows_from_node {
 
         # Recurse into each edge and gather all the sub-rows.
         foreach my $edge ( @edges ) {
-            my $subrow_list = $self->_rows_from_node( $edge->get_outputNode(), $seen );
+
+            # Avoid problems caused by splitting and then recombining in the graph.
+            my $local_seen  = dclone( $seen );
+
+            my $subrow_list = $self->_rows_from_node( $edge->get_outputNode(), $local_seen );
             foreach my $subrow ( @{ $subrow_list } ) {
                 unshift( @$subrow, $node );
             }

@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: DataMatrix.pm 340 2010-07-23 13:19:27Z tfrayner $
+# $Id: DataMatrix.pm 368 2012-05-28 15:49:02Z tfrayner $
 
 package Bio::MAGETAB::Util::Reader::DataMatrix;
 
@@ -124,14 +124,13 @@ sub parse {
 
     # Create the MatrixColumn objects.
     my @matrix_columns;
-    for ( my $col_number = 1; $col_number < scalar @{ $qts }; $col_number++ ) {
+    for ( my $col_number = 0; $col_number < scalar @{ $qts }; $col_number++ ) {
         push @matrix_columns, $self->get_builder()->find_or_create_matrix_column({
             columnNumber     => $col_number,
             quantitationType => $qts->[ $col_number ],
             referencedNodes  => $nodes->[ $col_number ],
             data_matrix      => $data_matrix,
         });
-        $col_number++;
     }
 
     $data_matrix->set_rowIdentifierType( $row_identifier_type );

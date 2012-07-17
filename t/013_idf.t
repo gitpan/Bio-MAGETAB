@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: 013_idf.t 333 2010-06-02 16:41:31Z tfrayner $
+# $Id: 013_idf.t 368 2012-05-28 15:49:02Z tfrayner $
 
 use strict;
 use warnings;
@@ -53,6 +53,11 @@ close( $fh ) or die("Error closing filehandle: $!");
 lives_ok( sub{ $idf = Bio::MAGETAB::Util::Reader::IDF->new( uri => $filename ) },
           'instantiation with uri attribute' );
 my $inv = test_parse( $idf );
+
+# Check multi-comment parsing (not prohibited by spec, so we allow it).
+my @comm = $inv->get_comments();
+is( scalar @comm, 2, 'correct number of comments');
+is( join(";", sort map { $_->get_value() } @comm), 'text1;text2', 'all comment values present');
 
 # Test parsing into a supplied magetab_object.
 use Bio::MAGETAB::Investigation;
@@ -149,3 +154,4 @@ SDRF File	dummy.txt
 Term Source Name	RO
 Term Source File	http://www.random-ontology.org/file.obo
 Term Source Version	0.1  
+Comment[here's a comment]	text1	text2

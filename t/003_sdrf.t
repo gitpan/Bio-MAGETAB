@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: 003_sdrf.t 333 2010-06-02 16:41:31Z tfrayner $
+# $Id: 003_sdrf.t 369 2012-07-17 18:01:48Z tfrayner $
 
 use strict;
 use warnings;
@@ -153,4 +153,23 @@ ok( $obj->isa('Bio::MAGETAB::BaseClass'), 'object has correct superclass' );
     );
     dies_ok( sub{ $obj->add_nodes( \@nodes4 ) },
              'adding chains containing cycles fails' );
+}
+
+# Check that splitting and recombining is not flagged by the cycle check.
+{
+    my @nodes5 = create_nodes( qw(Source LabeledExtract Assay) );
+    my $cv = Bio::MAGETAB::ControlledTerm->new(
+        category => 'Label', value => 'test label',
+    );
+    my $le = Bio::MAGETAB::LabeledExtract->new( name => 'test branch', label => $cv );
+    Bio::MAGETAB::Edge->new(
+        inputNode  => $nodes5[0],
+        outputNode => $le,
+    );
+    Bio::MAGETAB::Edge->new(
+        inputNode  => $le,
+        outputNode => $nodes5[2],
+    );
+    lives_ok( sub{ $obj->add_nodes( [ @nodes5, $le ] ) },
+              'adding splitting followed by pooling succeeds' );
 }

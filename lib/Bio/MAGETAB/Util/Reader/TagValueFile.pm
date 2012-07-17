@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: TagValueFile.pm 340 2010-07-23 13:19:27Z tfrayner $
+# $Id: TagValueFile.pm 368 2012-05-28 15:49:02Z tfrayner $
 
 package Bio::MAGETAB::Util::Reader::TagValueFile;
 
@@ -267,12 +267,15 @@ sub _add_comment {
 
     # Comments are currently processed at the level of the top-level
     # enclosing object (Investigation or ArrayDesign) only.
-    my ( $self, $name, $value ) = @_;
-
-    return if ( ! defined $value || $value =~ $BLANK );
+    my ( $self, $name, @values ) = @_;
 
     my $comments = $self->get_text_store()->{ 'comment' }{ $name } || [];
-    push @{ $comments }, $value;
+
+    VALUE:
+    foreach my $value ( @values ) {
+        next VALUE if ( ! defined $value || $value =~ $BLANK );
+        push @{ $comments }, $value;
+    }
 
     my %uniq = map { $_ => 1 } @{ $comments };
     $self->get_text_store()->{ 'comment' }{ $name } = [ keys %uniq ];
