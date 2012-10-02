@@ -41,4 +41,4 @@ requires:
   perl: 5.8.1
 resources:
   license: http://opensource.org/licenses/gpl-license.php
-version: 1.23
+version: 1.24

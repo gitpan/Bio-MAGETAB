@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: 013_idf.t 368 2012-05-28 15:49:02Z tfrayner $
+# $Id: 013_idf.t 371 2012-08-01 13:50:05Z tfrayner $
 
 use strict;
 use warnings;
@@ -67,6 +67,8 @@ lives_ok( sub{ $idf = Bio::MAGETAB::Util::Reader::IDF->new( uri            => $f
                                                             magetab_object => $inv2, ) },
           'instantiation uri and magetab_object attributes' );
 test_parse( $idf );
+
+is( $idf->get_document_version(), '1.1', 'correct MAGE-TAB document version');
 
 # These really ought to look identical.
 is_deeply( $inv, $inv2, 'investigation objects agree' );

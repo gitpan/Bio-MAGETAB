@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: IDF.pm 340 2010-07-23 13:19:27Z tfrayner $
+# $Id: IDF.pm 372 2012-08-01 14:01:42Z tfrayner $
 
 package Bio::MAGETAB::Util::Reader::IDF;
 
@@ -30,6 +30,11 @@ BEGIN { extends 'Bio::MAGETAB::Util::Reader::TagValueFile' };
 has 'magetab_object'     => ( is         => 'rw',
                               isa        => 'Bio::MAGETAB::Investigation',
                               required   => 0 );
+
+has 'document_version'   => ( is         => 'rw',
+                              isa        => 'Str',
+                              required   => 1,
+                              default    => '1.0' );
 
 # Define some standard regexps:
 my $BLANK = qr/\A [ ]* \z/xms;
@@ -153,7 +158,8 @@ sub BUILD {
             => sub{ $self->_add_grouped_data('termsource', 'version',  @_) },
 
         qr/MAGE-?TAB *Version/i    # New in 1.1; Strictly speaking 1.0 should never appear.
-            => sub{ croak("Unsupported MAGE-TAB version.") unless( first { $_[0] eq $_ } qw(1.1 1.0) ) },
+            => sub{ $self->set_document_version($_[0]);
+                    croak("Unsupported MAGE-TAB version.") unless( first { $_[0] eq $_ } qw(1.1 1.0) ) },
     };
 
     $self->set_dispatch_table( $dispatch );
@@ -514,6 +520,11 @@ See the L<TagValueFile|Bio::MAGETAB::Util::Reader::TagValueFile> class for super
 A Bio::MAGETAB::Investigation object. This can either be set upon
 instantiation, or a new object will be created for you. It can be
 retrieved at any time using C<get_magetab_object>.
+
+=item document_version
+
+A string representing the MAGE-TAB version used in the parsed
+document. This is populated by the parse() method.
 
 =back
 

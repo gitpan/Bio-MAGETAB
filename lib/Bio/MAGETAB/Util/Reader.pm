@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Reader.pm 364 2011-04-21 12:09:19Z tfrayner $
+# $Id: Reader.pm 372 2012-08-01 14:01:42Z tfrayner $
 
 package Bio::MAGETAB::Util::Reader;
 
@@ -73,6 +73,11 @@ has 'common_directory'    => ( is         => 'rw',
                                default    => 1,
                                required   => 1 );
 
+has 'document_version'    => ( is         => 'rw',
+                               isa        => 'Str',
+                               required   => 1,
+                               default    => '1.0' );
+
 # Make this visible to users of the module.
 our $VERSION = 1.0;
 
@@ -92,6 +97,7 @@ sub parse {
     });
 
     my ( $investigation, $magetab_container ) = $idf_parser->parse();
+    $self->set_document_version( $idf_parser->get_document_version() );
 
     # FIXME parse the SDRFS etc. here. N.B. some extra stitching may be needed.
     foreach my $sdrf ( @{ $investigation->get_sdrfs() } ) {
@@ -244,6 +250,11 @@ whether URIs found in IDF and SDRF files are interpreted relative to
 the locations of those files, or relative to the current working
 directory. Note that this will not affect local file URIs giving
 absolute locations or URIs using other schemes (e.g. http).
+
+=item document_version
+
+A string representing the MAGE-TAB version used in the parsed
+document. This is populated by the parse() method.
 
 =back
 
