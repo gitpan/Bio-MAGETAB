@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: SDRF.pm 368 2012-05-28 15:49:02Z tfrayner $
+# $Id: SDRF.pm 375 2012-10-11 10:11:13Z tfrayner $
 
 package Bio::MAGETAB::Util::Reader::SDRF;
 
@@ -2009,7 +2009,7 @@ __DATA__
 
     hybridization_name:        /Hybridi[sz]ation *Names?/i
 
-    hybridization:             hybridization_name hybrid_attribute(s?)
+    hybridization:             hybridization_name assay_attribute(s?)
 
                                    { $return = sub {
                                          my $name = shift;
@@ -2029,13 +2029,13 @@ __DATA__
                                       };
                                     }
 
-    hybrid_attribute:          array_design
+    assay_attribute:          array_design
                              | technology_type
                              | comment
 
     assay_name:                /Assay *Names?/i
 
-    assay:                     assay_name comment(s?) technology_type comment(s?)
+    assay:                     assay_name assay_attribute(s?)
 
                                    { $return = sub {
                                          my $name = shift;
@@ -2046,11 +2046,10 @@ __DATA__
                                              $::channel,
                                          );
                                          @::protocolapp_list = () if $obj;
-                                         foreach my $sub (@{$item[2]}, $item[3], @{$item[4]}){
+                                         foreach my $sub (@{$item[2]}){
                                              unshift( @_, $obj ) and
                                                  &{ $sub } if UNIVERSAL::isa( $sub, 'CODE' );  
                                          }
-
                                          $::previous_node = $obj if $obj;
                                          return $obj;
                                       };

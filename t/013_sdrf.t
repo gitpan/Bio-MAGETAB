@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: 013_sdrf.t 368 2012-05-28 15:49:02Z tfrayner $
+# $Id: 013_sdrf.t 375 2012-10-11 10:11:13Z tfrayner $
 
 use strict;
 use warnings;
@@ -142,6 +142,22 @@ $sdrf = test_parse( $sdrf_reader );
 my $tt = join(";", map { $_->get_value }
                   $sdrf_reader->get_builder()->get_assay({ name => 'Assay 1' })->get_comments());
 is( $tt, 'com text 3;com text 1;com text 2', 'Assay comments parsing correctly');
+
+# Check that Array Design REF can be attached to Assay Name.
+( $fh, $filename ) = tempfile( UNLINK => 1 );
+print $fh join("\t", ('Assay Name', 'Array Design REF','Comment[com1]','Technology Type')) . "\n";
+print $fh join("\t", ('Assay 1', 'Design 1','Comment 1', 'tt')) . "\n";
+close( $fh ) or die("Error closing filehandle: $!");
+
+$sdrf_reader = Bio::MAGETAB::Util::Reader::SDRF->new( uri => $filename );
+$sdrf_reader->get_builder->create_array_design({name => 'Design 1'});
+$sdrf = test_parse( $sdrf_reader );
+
+my $assay = $sdrf_reader->get_builder()->get_assay({ name => 'Assay 1' });
+my $ad = $assay->get_arrayDesign();
+is( $ad->get_name(), 'Design 1', 'Assay Array Design correctly linked' );
+is( join(";", map { $_->get_value } $ad->get_comments()), 'Comment 1',
+    'Array Design commented correctly');
 
 __DATA__
 Source Name	Provider	Characteristics[ OrganismPart ]	Characteristics[DiseaseState]	Term Source REF:test namespace	Term Accession Number	Material Type	Description	Comment[MyNVT]	Sample Name	Characteristics[Age]	Unit[TimeUnit]	Term Source REF	Material Type	Comment[sample comment]	Protocol REF	Performer	Parameter Value[Extracted Product]	Date	Comment[P_COMM]	Extract Name	Material Type	LabeledExtract Name	MaterialType	Term Source REF	Label	Term Source REF	Protocol REF	Term Source REF	Hybridization Name	Comment[some comment about the hyb]	Array Design REF	Comment[some comment about the array]	Protocol REF:made-up namespace:	Scan Name	Image File	Comment [scan comment here]	Array Data File	Comment[raw data comment]	Protocol REF	Normalization Name	Comment[data smoothness]	Derived Array Data File	Factor Value [EF1](Prognosis)	Term Source REF	Term Accession Number	Factor Value [EF2]	Unit[ConcentrationUnit]	Term Source REF
