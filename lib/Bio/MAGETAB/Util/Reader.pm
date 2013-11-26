@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Reader.pm 372 2012-08-01 14:01:42Z tfrayner $
+# $Id: Reader.pm 380 2013-04-30 09:08:39Z tfrayner $
 
 package Bio::MAGETAB::Util::Reader;
 
@@ -74,9 +74,7 @@ has 'common_directory'    => ( is         => 'rw',
                                required   => 1 );
 
 has 'document_version'    => ( is         => 'rw',
-                               isa        => 'Str',
-                               required   => 1,
-                               default    => '1.0' );
+                               isa        => 'Str' );
 
 # Make this visible to users of the module.
 our $VERSION = 1.0;

@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: 013_idf.t 371 2012-08-01 13:50:05Z tfrayner $
+# $Id: 013_idf.t 380 2013-04-30 09:08:39Z tfrayner $
 
 use strict;
 use warnings;
@@ -52,6 +52,7 @@ close( $fh ) or die("Error closing filehandle: $!");
 # Test parsing.
 lives_ok( sub{ $idf = Bio::MAGETAB::Util::Reader::IDF->new( uri => $filename ) },
           'instantiation with uri attribute' );
+is( $idf->get_document_version(), undef, 'document version is undef prior to parsing');
 my $inv = test_parse( $idf );
 
 # Check multi-comment parsing (not prohibited by spec, so we allow it).

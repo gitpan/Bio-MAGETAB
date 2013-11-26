@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: MAGETAB.pm 379 2012-12-22 20:02:52Z tfrayner $
+# $Id: MAGETAB.pm 383 2013-11-26 11:07:05Z tfrayner $
 
 # Convenience class for module loading and object tracking.
 package Bio::MAGETAB;
@@ -31,7 +31,7 @@ use List::Util qw(first);
 
 use MooseX::Types::Moose qw( HashRef );
 
-our $VERSION = 1.27;
+our $VERSION = 1.28;
 
 # This cache is used to store all the Bio::MAGETAB objects registered
 # with this instance (which, by default, is all of them).

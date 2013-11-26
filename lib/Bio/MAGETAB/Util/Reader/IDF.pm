@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: IDF.pm 372 2012-08-01 14:01:42Z tfrayner $
+# $Id: IDF.pm 380 2013-04-30 09:08:39Z tfrayner $
 
 package Bio::MAGETAB::Util::Reader::IDF;
 
@@ -32,9 +32,7 @@ has 'magetab_object'     => ( is         => 'rw',
                               required   => 0 );
 
 has 'document_version'   => ( is         => 'rw',
-                              isa        => 'Str',
-                              required   => 1,
-                              default    => '1.0' );
+                              isa        => 'Str' );
 
 # Define some standard regexps:
 my $BLANK = qr/\A [ ]* \z/xms;
@@ -185,6 +183,12 @@ sub parse {
     foreach my $datum ( @$idf_data ) {
         my ( $tag, $values ) = @$datum;
 	$self->_dispatch( $tag, @$values );
+    }
+
+    # Set our MAGE-TAB version if it's a 1.0 doc (which has no version
+    # tag).
+    unless ( defined $self->get_document_version() ) {
+        $self->set_document_version('1.0');
     }
 
     # Actually generate the Bio::MAGETAB objects.

@@ -17,14 +17,19 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: 100_pod_coverage.t 333 2010-06-02 16:41:31Z tfrayner $
+# $Id: 100_pod_coverage.t 381 2013-11-04 10:55:27Z tfrayner $
 
 use strict;
 use warnings;
 
 use Test::More;
 eval "use Test::Pod::Coverage 1.00";
-plan skip_all => "Test::Pod::Coverage 1.00 required for testing POD coverage" if $@;
+if ( $@ ) {
+    plan skip_all => "Test::Pod::Coverage 1.00 required for testing POD coverage";
+}
+elsif ( ! $ENV{MAGETAB_TEST_POD_COVERAGE} ) {
+    plan skip_all => 'Set $MAGETAB_TEST_POD_COVERAGE to test POD coverage. Requires Graphviz and Tangram modules.';
+}
 
 plan tests => 57;
 
