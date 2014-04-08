@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: SDRF.pm 375 2012-10-11 10:11:13Z tfrayner $
+# $Id: SDRF.pm 385 2014-04-08 09:28:43Z tfrayner $
 
 package Bio::MAGETAB::Util::Reader::SDRF;
 
@@ -444,21 +444,17 @@ sub _create_characteristic_value {
     return $term;
 }
 
-sub _create_characteristic_measurement {
+sub _create_characteristic_measurementhash {
 
     my ( $self, $type, $value, $material ) = @_;
 
     return if ( ! $material || ! defined $value || $value =~ $BLANK );
 
-    my $measurement = $self->get_builder()->find_or_create_measurement({
+    return {
         measurementType  => $type,
         value            => $value,
         object           => $material,
-    });
-    
-    $self->_add_characteristic_to_material( $measurement, $material ) if $material;
-
-    return $measurement;
+    };
 }
 
 sub _create_material_type {
@@ -1110,21 +1106,21 @@ sub _create_factorvalue_value {
     return $factorvalue;
 }
 
-sub _create_factorvalue_measurement {
+sub _create_factorvalue_measurementhash {
 
-    my ( $self, $factorname, $altcategory, $value ) = @_;
+    my ( $self, $factorname, $value, $altcategory ) = @_;
 
     return if ( ! defined $value || $value =~ $BLANK );
 
-    my $exp_factor = $self->get_builder()->get_factor({
+    my $exp_factor  = $self->get_builder()->get_factor({
         name => $factorname,
     });
 
     my $category;
     if ( $altcategory ) {
 
-	# If we're given a category in parentheses, use it.
-	$category = $altcategory;
+        # If we're given a category in parentheses, use it.
+        $category = $altcategory;
     }
     else {
 
@@ -1132,23 +1128,31 @@ sub _create_factorvalue_measurement {
         $category = $self->_get_fv_category_from_factor( $exp_factor );
     }
 
-    # Note that this isn't quite perfect; identical measurements will
-    # be mapped to the same object so altering values post-creation
-    # will alter all of the matching values. I think this is
-    # unintuitive (although similar to controlled term processing) so FIXME.
-    my $measurement = $self->get_builder()->find_or_create_measurement({
+    return {
         measurementType  => $category,
         value            => $value,
+    };
+}
+
+sub _create_factorvalue_measurement {
+
+    my ( $self, $meashash, $factorname ) = @_;
+
+    return if ( ! defined $meashash );
+
+    my $exp_factor  = $self->get_builder()->get_factor({
+        name => $factorname,
     });
 
-    my $factorvalue = $self->get_builder()->find_or_create_factor_value({
+    my $fvmeas = $self->get_builder->find_or_create_measurement($meashash);
+
+    my $fv = $self->get_builder()->find_or_create_factor_value({
         factor      => $exp_factor,
-        measurement => $measurement,
+        measurement => $fvmeas,
     });
+    $self->get_builder()->update( $fv );
 
-    $self->get_builder()->update( $factorvalue );
-
-    return $factorvalue;
+    return $fv;
 }
 
 sub _add_comment_to_thing {
@@ -1527,14 +1531,21 @@ __DATA__
                                          my $material = shift;
 
                                          # Add a measurement with unit to the material.
-                                         my $char = $::sdrf->_create_characteristic_measurement(
+                                         my $charhash = $::sdrf->_create_characteristic_measurementhash(
                                              $item[3], shift, $material,
                                          );
 
-                                         unshift( @_, $char );
+                                         unshift(@_, $charhash);
                                          my $unit = &{ $item[5] };
 
-                                         return $char;
+                                         if ( defined $charhash ) {
+                                             my $char = $::sdrf->get_builder->find_or_create_measurement($charhash);
+                                             $::sdrf->_add_characteristic_to_material($char, $material);
+                                             return $char;
+                                         }
+                                         else {
+                                             return;
+                                         }
                                      };
                                    }
 
@@ -1587,17 +1598,17 @@ __DATA__
                                          # Value
                                          my $value = shift;
 
+                                         my $meashash = $::sdrf->_create_factorvalue_measurementhash( $item[3], $value, $item[4][0]  );
+
                                          # Attach the unit to the measurement.
-                                         my $fv = $::sdrf->_create_factorvalue_measurement(
-                                             $item[3],
-                                             $item[4][0],
-                                             $value,
-                                         );
-
-                                         unshift( @_, $fv );
+                                         unshift(@_, $meashash);
                                          my $unit = &{ $item[6] };
-
-                                         return $fv;
+                                         if ( defined $meashash ) {
+                                             return $::sdrf->_create_factorvalue_measurement($meashash, $item[3]);
+                                         }
+                                         else {
+                                             return;
+                                         }
                                      };
                                    }
 
