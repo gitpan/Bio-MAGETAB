@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Bio::MAGETAB.  If not, see <http://www.gnu.org/licenses/>.
 #
-# $Id: Types.pm 359 2011-04-15 13:14:26Z tfrayner $
+# $Id: Types.pm 386 2014-04-11 14:54:54Z tfrayner $
 
 use strict;
 use warnings;
@@ -84,8 +84,9 @@ coerce Date,
 
     from Str,
     via {
-        require DateTime::Format::DateManip;
-        DateTime::Format::DateManip->parse_datetime($_)
+        require DateTime::Format::Flexible;
+        my $parser = DateTime::Format::Flexible->new();
+        $parser->parse_datetime($_)
             or croak(qq{Cannot parse date format "$_"; try YYYY-MM-DD});
     };
 

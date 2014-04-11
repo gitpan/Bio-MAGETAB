@@ -29,7 +29,7 @@ recommends:
 requires:
   Date::Manip: 5.44
   DateTime: 0.4302
-  DateTime::Format::DateManip: 0.04
+  DateTime::Format::Flexible: 0.21
   Email::Valid: 0.179
   Moose: 0.43
   MooseX::FollowPBP: 0.04
@@ -41,4 +41,4 @@ requires:
   perl: 5.8.1
 resources:
   license: http://opensource.org/licenses/gpl-license.php
-version: 1.3
+version: 1.31
